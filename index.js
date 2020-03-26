@@ -1,7 +1,7 @@
 'use strict';
 
 const Hapi = require('@hapi/hapi');
-//const ImageStore = require('./app/utils/image-store');
+const ImageStore = require('./app/utils/image-store');
 
 const server = Hapi.server({
     port: 3000,
@@ -31,7 +31,7 @@ async function init() {
     await server.register(require('@hapi/vision'));
     await server.register(require('@hapi/cookie'));
 
-    //ImageStore.configure(credentials);
+    ImageStore.configure(credentials);
 
     server.validator(require('@hapi/joi'))
 
