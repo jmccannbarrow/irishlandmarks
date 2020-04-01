@@ -19,6 +19,7 @@ const Landmarks = {
             try{
                 const id = request.auth.credentials.id;
                 const landmarks = await Landmark.find({userid: id}).lean();
+                //const landmarks = await Landmark.find().populate('user').lean();
                 return h.view('report', {
                     title: 'Landmarks to Date',
                     landmarks:landmarks
@@ -48,6 +49,7 @@ const Landmarks = {
                         category: data.category,
                         userid: id,
                         imageURL: url,
+                        user: user._id
                     });
 
                     await newLandmark.save();
