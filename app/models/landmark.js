@@ -12,6 +12,10 @@ const landmarkSchema = new Schema({
     category: String,
     userid: String,
     imageURL: String,
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }
 
 });
 
