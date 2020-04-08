@@ -19,7 +19,7 @@ const Landmarks = {
             try{
                 const id = request.auth.credentials.id;
                 const landmarks = await Landmark.find({userid: id}).lean();
-                //const landmarks = await Landmark.find().populate('user').lean();
+                //const landmarks = await Landmark.findById().populate('user').lean();
                 return h.view('report', {
                     title: 'Landmarks to Date',
                     landmarks:landmarks
