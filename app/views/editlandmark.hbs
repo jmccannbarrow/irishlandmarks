@@ -16,18 +16,35 @@
                             <input value="{{landmark.description}}" type="text" name="description">
                             <div></div>
                             <div></div>
-
                             <div class="field">
-                                <label>Image</label>
-                                <img src="{{landmark.imageURL}}" alt="No Image" width="542" height="262">
+                                <label>Category</label>
 
-
+                                <input value="{{landmark.category}}" type="text" name="category">
                                 <div></div>
                                 <div></div>
                                 <div class="field">
-                                    <label>Image:</label>
-                                    <input type="file" class="form-control" name="imagefile" accept="image/png, image/jpeg">
-                                    <input type="submit" value="Upload" class="uk-button uk-button-default">
+                                    <label>Latitude</label>
+
+                                    <input value="{{landmark.latitude}}" type="text" name="latitude">
+                                    <div></div>
+                                    <div></div>
+                                    <div class="field">
+                                        <label>Longitude</label>
+
+                                        <input value="{{landmark.longitude}}" type="text" name="longitude">
+                                        <div></div>
+                                        <div></div>
+                                        <div class="field">
+                                            <label>Image</label>
+                                            <img src="{{landmark.imageURL}}" alt="No Image" width="542" height="262">
+
+
+                                            <div></div>
+                                            <div></div>
+                                            <div class="field">
+                                                <label>Image:</label>
+                                                <input type="file" class="form-control" name="imagefile" accept="image/png, image/jpeg">
+                                                <input type="submit" value="Upload" class="uk-button uk-button-default">
 
                 </form>
             </div>
