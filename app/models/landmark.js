@@ -12,6 +12,8 @@ const landmarkSchema = new Schema({
     category: String,
     userid: String,
     imageURL: String,
+    latitude: String,
+    longitude: String,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'

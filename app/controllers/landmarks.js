@@ -18,7 +18,8 @@ const Landmarks = {
         handler: async function(request, h) {
             try{
                 const id = request.auth.credentials.id;
-                const landmarks = await Landmark.find({userid: id}).lean();
+                const landmarks = await Landmark.find({user:id}).populate('user').lean();
+                //const landmarks = await Landmark.find({userid: id}).lean();
                 //const landmarks = await Landmark.findById().populate('user').lean();
                 return h.view('report', {
                     title: 'Landmarks to Date',
@@ -47,6 +48,8 @@ const Landmarks = {
                         name: data.name,
                         description: data.description,
                         category: data.category,
+                        latitude: data.latitude,
+                        longitude: data.longitude,
                         userid: id,
                         imageURL: url,
                         user: user._id
@@ -125,6 +128,9 @@ const Landmarks = {
                     landmark.name = landmarkedit.name;
                     landmark.description = landmarkedit.description;
                     landmark.imageURL = url;
+                    landmark.category = landmarkedit.category;
+                    landmark.latitude = landmarkedit.latitude;
+                    landmark.longitude = landmarkedit.longitude;
 
                     await landmark.save();
                     return h.redirect('/report');

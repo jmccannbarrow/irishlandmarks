@@ -5,22 +5,29 @@
       "firstName": "Homer",
       "lastName": "Simpson",
       "email": "homer@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$HnapEWWKQQ0.0Ft33nXxtuJ0fsmd9ywYswEzT4C.6Ul5y6cOU.UEa"
     },
     "bart": {
       "firstName": "Bart",
       "lastName": "Simpson",
       "email": "bart@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$uqnPlgyVjBEOtcgMhn/WRO3FwW4T9gX36tTB4RqpGeB/LkCR3YQuO"
+    },
+
+    "lisa": {
+      "firstName": "Lisa",
+      "lastName": "Simpson",
+      "email": "lisa@simpson.com",
+      "password": "$2a$10$D3TWK8MSAh63Lhk4gIFSJ.ekM368J88qJRUYSbuBfzffex6B0dFwK"
     }
   },
-  "admin": {
+  "admins": {
     "_model": "Admin",
     "marge": {
       "firstName": "Marge",
       "lastName": "Simpson",
       "email": "marge@simpson.com",
-      "password": "secret"
+      "password": "$2a$10$gSUx2PXuVg7meUKhBRXIVOf0/M0rUW2sVrDc4pAwxKW5fRfKiJBty"
     }
   },
   "landmarks": {
@@ -28,35 +35,45 @@
     "one": {
       "name": "Blarney Stone",
       "description": "Even people with a cynical streak lay it down and have a grand time kissing the Blarney Stone.  It’s said to give a person the gift of gab.  The origin of the stone is shrouded in myth, but some say it was brought back from the Holy Land.  Wherever it came from, giving it a smooch is an irresistible act of Irish kitsch.",
-      "category": "poi",
+      "category": "Heritage Site",
+      "latitude": "1234.6",
+      "longitude": "0.7565",
       "imageURL": "http://res.cloudinary.com/dzpmc2rgn/image/upload/v1583596097/ki3llbkqnuhxy86gcqhe.jpg",
       "user": "->users.homer"
     },
     "two": {
       "name": "The Cliffs of Moher",
       "description": "Words seem like mere shadows compared to the awesome power of nature.  There may be no other place on earth where you’ll experience that raw, muscular power without climbing the Himalaya’s or pointing yourself to the Antarctic.  Easy to get to, the cliffs are in County Clare.  They’re a blaze of cold, fog, and mystic energy.  When here, we advise you tread with caution. There are no barriers and the wind often rises with a fury.  Feel it!",
-      "category": "poi",
+      "category": "Cliff",
+      "latitude": "1454.6",
+      "longitude": "0.8565",
       "imageURL": "http://res.cloudinary.com/dzpmc2rgn/image/upload/v1583596027/cgpg2bvae4d44oalldla.jpg",
       "user": "->users.homer"
     },
     "three": {
       "name": "The Ring of Kerry",
       "description": "The Ring is one of Ireland’s best-loved scenic routes.  At 110 miles long, it circles the awesome Iveragh Peninsula.  You’ll feel as if you’ve tumbled into nature’s mystic arena, and in many ways you have.  The road winds through soft mountains, around bogs, rivers, lakes, and pristine beaches. There are diminutive passes and sweet valleys along the fabled shores of Dingle and Kenmare Bays.  Get out and talk to people in the villages along the way—this is part of an Authentic experience. The Ring attracted Ireland’s first settlers, and ancient ruins abound.  Explore to your heart’s delight.",
-      "category": "poi",
+      "category": "Route",
+      "latitude": "4234.6",
+      "longitude": "1.7565",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585779698/dylunp570qrbjhtbyxwn.jpg",
       "user": "->users.homer"
     },
     "four": {
-      "name": "The Giant's Causeway",
+      "name": "The Giants Causeway",
       "description": "This UNESCO Heritage site is in Northern Ireland, County Antrim.  According to legend, the Irish giant, Fionn McCool, built the causeway to walk to Scotland to do battle with an infamous Scots rival.  This rival, and there are many variations as to what caused his terror, was so frightened by Fionn that he ripped up the pathway so he couldn’t return.  We like to think that, perhaps, Fionn built the pathway to greet a true love in Scotland.  See the Giant’s Causeway and make up your own story.  This is the place where the scenery is stunning and the storytelling is . . . fit for a giant!",
-      "category": "poi",
+      "category": "Rock",
+      "latitude": "12334.6",
+      "longitude": "1.7565",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1583596158/fz8husovjf9unloynam1.jpg",
       "user": "->users.bart"
     },
     "five": {
       "name": "Newgrange",
       "description": "Newgrange, in County Meath, crouches on a rise just north of the River Boyne. It is the focal point for a ceremonial area and megalithic cemetery that’s 5,000 years old.  (The tomb’s passage is perfectly aligned to mark the Winter Solstice.) According to reliable dating techniques, Newgrange was constructed around 3,200BC.  This means it’s at least 600 years older than the Giza Pyramids in Egypt, and 1,000 years older than Stonehenge",
-      "category": "poi",
+      "category": "Heritage Site",
+      "latitude": "1834.6",
+      "longitude": "3.7565",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585779812/ege7yom92ioqbccsq0yi.jpg",
       "user": "->users.bart"
     }
