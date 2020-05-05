@@ -3,6 +3,7 @@
 const Mongoose = require('mongoose');
 const Schema = Mongoose.Schema;
 const Boom = require('@hapi/boom');
+const bcrypt = require('bcrypt');          // ADDED
 
 const userSchema = new Schema({
     firstName: String,
@@ -22,12 +23,19 @@ userSchema.statics.findById = function(userid) {
     return this.findOne({_id: userid});
 };
 
-userSchema.methods.comparePassword = function(candidatePassword) {
-    const isMatch = this.password === candidatePassword;
-    if (!isMatch) {
-        throw Boom.unauthorized('Password mismatch');
-    }
-    return this;
+userSchema.methods.comparePassword = async function(userPassword) {        // EDITED
+    const isMatch = await bcrypt.compare(userPassword, this.password);
+    return isMatch;
 };
+
+
+
+//userSchema.methods.comparePassword = function(userPassword) {
+// const isMatch = this.password === userPassword;
+// if (!isMatch) {
+//throw Boom.unauthorized('Password mismatch');
+// }
+// return this;
+//};
 
 module.exports = Mongoose.model('User', userSchema);
