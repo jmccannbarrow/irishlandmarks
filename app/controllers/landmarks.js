@@ -75,6 +75,60 @@ const Landmarks = {
     },
 
 
+    showCreateLandmark: {
+        auth: false,
+        handler: function(request, h) {
+            return h.view('createlandmark', { title: 'Sign up for Famous Irish Landmarks' });
+        }
+    },
+
+    createlandmark: {
+        handler: async function(request, h) {
+
+            try {
+                const file = request.payload.imagefile;
+
+                if (Object.keys(file).length > 0) {
+                    const url = await ImageStore.uploadImage(request.payload.imagefile);
+
+                    const id = request.auth.credentials.id;
+                    const user = await User.findById(id);
+                    const data = request.payload;
+
+
+                    const newLandmark = new Landmark({
+                        name: data.name,
+                        description: data.description,
+                        category: data.category,
+                        latitude: data.latitude,
+                        longitude: data.longitude,
+                        userid: id,
+                        imageURL: url,
+                        user: user._id
+                    });
+
+                    await newLandmark.save();
+                    return h.redirect('/report');
+
+                }
+
+
+            } catch (err) {
+                console.log(err);
+            }
+        },
+        payload: {
+            multipart: true,
+            output: 'data',
+            maxBytes: 209715200,
+            parse: true
+        }
+
+    },
+
+
+
+
     showLandmarkSettings: {
 
 
@@ -154,13 +208,24 @@ const Landmarks = {
 
     poilist: {
         handler: async function(request, h) {
-            const landmarks = await Landmark.find().populate('contributor').lean();
-            return h.view('poilist', {
+            //const landmarks = await Landmark.find().populate('contributor').lean();
+            return h.view('/poireport', {
                 title: 'Landmarks to Date',
+
+            });
+        }
+    },
+
+    managelandmarks: {
+        handler: async function(request, h) {
+            const landmarks = await Landmark.find().populate('contributor').lean();
+            return h.view('managelandmarks', {
+                title: 'All Landmarks',
                 landmarks:landmarks
             });
         }
     },
+
 
     deleteLandmark: {
         handler: async function (request, h) {
