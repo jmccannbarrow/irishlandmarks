@@ -1,6 +1,143 @@
 {{> mainmenu _id="report"}}
+<style>
+    #map {
+        width: 100%;
+        height: 560px;
+        background-color: grey;
+    }
+</style>
+<h4>Map</h4>
 
-{{> landmark }}
+<!--The div element for the map -->
+<div id="map"></div>
+
+<script>
+    // Initialize and add the map
+    function initMap() {
+        let blarney = {
+            info:
+                    '<strong>Blarney Stone</strong><br>',
+            lat: 51.929092,
+            long: -8.570885,
+        }
+
+        let cliffs = {
+            info:
+                    '<strong>The Cliffs of Moher</strong><br>',
+            lat: 52.970490,
+            long: -9.419951,
+        }
+
+        let ring = {
+            info:
+                    '<strong>The Ring of Kerry</strong><br>',
+            lat: 51.9427,
+            long: -9.9172,
+        }
+
+
+        let aran = {
+            info:
+                    '<strong>The Aran Islands</strong><br>',
+            lat: 53.1167,
+            long: -9.7000,
+        }
+
+        let burren = {
+            info:
+                    '<strong>The Burren</strong><br>',
+            lat: 53.0500,
+            long: -9.1000,
+        }
+
+        let dingle = {
+            info:
+                    '<strong>Dingle Bay</strong><br>',
+            lat: 52.0667,
+            long: -10.1833,
+        }
+
+
+        let skellig = {
+            info:
+                    '<strong>Skellig Michael</strong><br>',
+            lat: 51.7667,
+            long: -10.5333,
+        }
+
+        let trinity = {
+            info:
+                    '<strong>Trinity College</strong><br>',
+            lat: 53.343792,
+            long: -6.254572,
+        }
+
+        let ben = {
+            info:
+                    '<strong>Ben Bulben</strong><br>',
+            lat: 54.3666652,
+            long: -8.4666648,
+        }
+
+        let waterford = {
+            info:
+                    '<strong>The Waterford Viking Triangle</strong><br>',
+            lat: 52.255556,
+            long: -7.116667,
+        }
+
+        let locations = [
+            [blarney.info, blarney.lat, blarney.long, 0],
+            [cliffs.info, cliffs.lat, cliffs.long, 1],
+            [ring.info, ring.lat, ring.long, 2],
+            [aran.info, aran.lat, aran.long, 3],
+            [burren.info, burren.lat, burren.long, 4],
+            [dingle.info, dingle.lat, dingle.long, 5],
+            [skellig.info, skellig.lat, skellig.long, 6],
+            [trinity.info, trinity.lat, trinity.long, 7],
+            [ben.info, ben.lat, ben.long, 8],
+            [waterford.info, waterford.lat, waterford.long, 9],
+
+        ]
+
+        let map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: new google.maps.LatLng(52.95111, -7.80167),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+        })
+
+        let infowindow = new google.maps.InfoWindow({})
+
+        let marker, i
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map,
+            })
+
+            google.maps.event.addListener(
+                    marker,
+                    'click',
+                    (function (marker, i) {
+                        return function () {
+                            infowindow.setContent(locations[i][0])
+                            infowindow.open(map, marker)
+                        }
+                    })(marker, i)
+            )
+        }
+    }
+</script>
+<!--Load the API from the specified URL
+* The async attribute allows the browser to render the page while the API loads
+* The key parameter will contain your own API key (which is not needed for this tutorial)
+* The callback parameter executes the initMap() function
+-->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDU3i8M25m-m2Fv-3dm_gum36ZYRZ0WQ90&callback=initMap">
+</script>        </div>
+</div>
 {{> landmarklist }}
 <div></div>
 <div></div>
