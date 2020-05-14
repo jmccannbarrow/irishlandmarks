@@ -2,6 +2,7 @@
 
 const Accounts = require('./app/controllers/accounts');
 const Landmarks = require('./app/controllers/landmarks');
+const Categorys = require('./app/controllers/categorys');
 
 
 module.exports = [
@@ -36,8 +37,19 @@ module.exports = [
     { method: 'POST', path: '/landmark', config: Landmarks.landmark },
 
 
+    //{ method: 'GET', path: '/createlandmark', config: Landmarks.showCreateLandmark },
+    //{ method: 'POST', path: '/createlandmark', config: Landmarks.createlandmark },
 
 
+    { method: 'GET', path: '/categoryreport',  config: Categorys.categoryreport },
+    { method: 'POST', path: '/category', config: Categorys.category },
+
+    { method: 'GET', path: '/managecategorys',  config: Categorys.managecategorys },
+
+    { method: 'GET', path: '/createcategory', config: Categorys.showCreateCategory },
+    { method: 'POST', path: '/createcategory', config: Categorys.createcategory },
+
+    //{ method: 'GET', path: '/managelandmarks',  config: Landmarks.managelandmarks },
 
 
     { method: 'GET', path: '/manageusers',  config: Accounts.manageusers },
