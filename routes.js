@@ -37,8 +37,8 @@ module.exports = [
     { method: 'POST', path: '/landmark', config: Landmarks.landmark },
 
 
-    //{ method: 'GET', path: '/createlandmark', config: Landmarks.showCreateLandmark },
-    //{ method: 'POST', path: '/createlandmark', config: Landmarks.createlandmark },
+    { method: 'GET', path: '/createlandmark', config: Landmarks.showCreateLandmark },
+    { method: 'POST', path: '/createlandmark', config: Landmarks.createlandmark },
 
 
     { method: 'GET', path: '/categoryreport',  config: Categorys.categoryreport },
@@ -49,7 +49,7 @@ module.exports = [
     { method: 'GET', path: '/createcategory', config: Categorys.showCreateCategory },
     { method: 'POST', path: '/createcategory', config: Categorys.createcategory },
 
-    //{ method: 'GET', path: '/managelandmarks',  config: Landmarks.managelandmarks },
+    { method: 'GET', path: '/managelandmarks',  config: Landmarks.managelandmarks },
 
 
     { method: 'GET', path: '/manageusers',  config: Accounts.manageusers },
