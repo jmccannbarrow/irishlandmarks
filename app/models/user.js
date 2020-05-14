@@ -21,6 +21,7 @@ userSchema.statics.findByEmail = function(email) {
 
 userSchema.statics.findById = function(userid) {
     return this.findOne({_id: userid});
+    //
 };
 
 userSchema.methods.comparePassword = async function(userPassword) {        // EDITED
