@@ -2,6 +2,7 @@
 
 const Hapi = require('@hapi/hapi');
 const ImageStore = require('./app/utils/image-store');
+const utils = require('./app/api/utils.js');
 
 
 const server = Hapi.server({
@@ -29,11 +30,22 @@ require('./app/models/db');
 async function init() {
     await server.register(require('@hapi/inert'));
     await server.register(require('@hapi/vision'));
-    await server.register(require('@hapi/cookie'));
+    await server.register(require('hapi-auth-cookie'));
+    await server.register(require('hapi-auth-jwt2'));
+
+
+
+
 
     ImageStore.configure(credentials);
 
     server.validator(require('@hapi/joi'))
+
+    server.auth.strategy('jwt', 'jwt', {
+        key: 'secretpasswordnotrevealedtoanyone',
+        validate: utils.validate,
+        verifyOptions: { algorithms: ['HS256'] },
+    });
 
     server.auth.strategy('session', 'cookie', {
         cookie: {
@@ -43,6 +55,7 @@ async function init() {
         },
         redirectTo: '/'
     });
+
 
 
     server.views({
@@ -71,6 +84,8 @@ process.on('unhandledRejection', err => {
     console.log(err);
     process.exit(1);
 });
+
+
 
 
 init();

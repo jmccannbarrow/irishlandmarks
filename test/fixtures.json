@@ -32,6 +32,21 @@
     }
   ],
 
+  "categorys": [
+    {
+      "Name": "Castle"
+
+    },
+    {
+      "Name": "Lake"
+
+    },
+    {
+      "Name": "Beach"
+
+    }
+  ],
+
 
   "landmarks": [
     {
