@@ -1,5 +1,5 @@
 <section class="ui raised segment">
-    <h3 class="ui header">Categories</h3>
+    <h3 class="ui header">Manage Categories </h3>
     <div class="ui grid">
 
         <article class="eighteen wide column">
@@ -7,13 +7,29 @@
                 <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Delete</th>
+                    <th>Edit</th>
+
                 </tr>
                 </thead>
                 <tbody>
                 {{#each categorys}}
+
                     <tr>
                         <td> {{Name}} </td>
 
+
+
+
+
+
+
+                        <td><div class="ui item"><a href="/category/deleteCategory/{{_id}}" class="ui icon button"><i class="icon trash"></i>
+                        </a>
+                        </td>
+                        <td><div class="ui item"><a href="/category/showCategorySettings/{{_id}}" class="ui icon button"><i class="edit icon"></i>
+                        </a>
+                        </td>
 
                     </tr>
                 {{/each}}
@@ -22,4 +38,5 @@
         </article>
     </div>
 </section>
+
 

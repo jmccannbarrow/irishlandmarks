@@ -9,14 +9,26 @@ suite('Landmark API tests', function () {
 
     let landmarks = fixtures.landmarks;
     let newLandmark = fixtures.newLandmark;
+    let newUser = fixtures.newUser;
 
-    const poiService = new PoiService('http://localhost:3000');
+    const poiService = new PoiService(fixtures.poiService);
 
-    setup(async function () {
+    suiteSetup(async function() {
+        await poiService.deleteAllUsers();
+        const returnedUser = await poiService.createUser(newUser);
+        const response = await poiService.authenticate(newUser);
+    });
+
+    suiteTeardown(async function() {
+        await poiService.deleteAllUsers();
+        poiService.clearAuth();
+    });
+
+    setup(async function() {
         await poiService.deleteAllLandmarks();
     });
 
-    teardown(async function () {
+    teardown(async function() {
         await poiService.deleteAllLandmarks();
     });
 
@@ -72,5 +84,7 @@ suite('Landmark API tests', function () {
         const allLandmarks = await poiService.getLandmarks();
         assert.equal(allLandmarks.length, 0);
     });
+
+
 
 });
