@@ -1,13 +1,16 @@
+{{> mainmenu _id="editcategory"}}
+
+
 <section class="ui raised segment">
     <div class="ui grid ">
         <div class="ui sixteen wide column">
             <div class="ui stacked fluid form segment">
-                <form action="/category" method="POST">
-                    <h3 class="ui header">Add a Categorys</h3>
+                <form action="/editcategory/{{category._id}}" method="POST" >
+                    <h3 class="ui header">Edit your Categorys</h3>
                     <div class="three fields">
                         <div class="field">
                             <label>Name</label>
-                            <input placeholder="Name" type="text" name="Name">
+                            <input value="{{category.Name}}" type="text" name="Name" placeholder="Name">
                         </div>
 
 
@@ -17,6 +20,3 @@
 
         </div>
 </section>
-
-
-

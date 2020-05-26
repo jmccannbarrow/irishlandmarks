@@ -8,4 +8,22 @@ const categorySchema = new Schema({
 
 });
 
+
+
+//categorySchema.statics.findByName = function(Name) {
+//return this.findOne({ Name : Name});
+//};
+
+categorySchema.statics.findByName = function(Name) {
+    return this.findOne({ Name : Name });
+};
+
+
+categorySchema.statics.findById = function(id) {
+    return this.findOne({ _id : id});
+
+};
+
+
+
 module.exports = Mongoose.model('Category', categorySchema);

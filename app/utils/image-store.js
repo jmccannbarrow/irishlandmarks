@@ -32,6 +32,8 @@ const ImageStore = {
         await cloudinary.v2.uploader.destroy(id, {});
     },
 
+
+
 };
 
 module.exports = ImageStore;

@@ -1,43 +1,118 @@
+
 <section class="ui raised segment">
     <div class="ui grid ">
-        <div class="ui sixteen wide column">
+
+
+        <div class="ui eighteen wide column">
             <div class="ui stacked fluid form segment">
                 <form action="/landmark" method="POST" enctype="multipart/form-data"  >
                     <h3 class="ui header">Create your Landmark</h3>
 
-                    <div class="six wide field">
+                    <div class="five wide field">
 
                         <label>Name:</label>
                         <input placeholder="name" type="text" name="name" required></div>
-                    <div class="field">
+                    <div class="five wide field">
+
+                        <label>Categorys:</label>
+
+
+
+
+
+
+                        <select>
+                            <option value="0">Please Select A Categorys</option>
+                            {{#each categorys}}
+                                <option value="{{Name}}">{{Name}} </option>
+
+                            {{/each}}
+                        </select>
+                    </div>
+
+                    <input type="hidden" name="category" id="category" value="" required >
+
+
+                    <div class="twelve wide field">
                         <label>Description:</label>
 
                         <textarea placeholder="Description" type="text" name="description" required></textarea></div>
-                    <div class="three fields">
-                        <div class="six wide field">
-                            <label>Categorys:</label>
+                    <div class="two fields">
 
-                            <input placeholder="Categorys" type="text" name="category" required></input></div>
 
-                        <div class="six wide field">
+
+
+                        <div class="three wide field">
                             <label>Latitude:</label>
 
                             <input placeholder="Latitude" type="text" name="latitude" required></input></div>
-                        <div class="six wide field">
+
+                        <div class="three wide field">
                             <label>Longtitude:</label>
-
-
 
                             <input placeholder="Longtitude" type="text" name="longitude" required></input></div>
                     </div>
-                    <div class="six wide field">
-                        <label>Image:</label>
-                        <input type="file" class="form-control" name="imagefile" accept="image/png, image/jpeg" >
-                        <input type="submit" value="Upload" class="uk-button uk-button-default">
+                    <div class="field">
+                        <div class="six wide field">
+                            <label>Image:</label>
+                            <input type="file" class="form-control" name="imagefile" accept="image/png, image/jpeg" >
+                            <input type="submit" value="Upload" class="uk-button uk-button-default">
 
                 </form>
-            </div>
 
+            </div>
         </div>
+    </div>
+
+    </div>
 </section>
 
+<script type="text/javascript">
+    $('select').on(
+            { "focus": function() {
+
+                    this.selectedIndex = -1;
+                }
+                , "change": function() {
+                    choice = $(this).val();
+
+
+                    this.blur();
+
+
+                    if (choice == "0") {
+
+                        setTimeout(function() { alert('Please Choose A Categorys');}, 0);
+                        return;
+                    }
+                    else {
+
+                        $("#category").val(choice);
+                    }
+
+                }
+            })
+
+
+    $('form').submit(function () {
+
+
+        var category = $.trim($('#category').val());
+
+
+
+        // Check if empty of not
+
+        if (category  === '') {
+
+            alert('Please select a category');
+
+            return false;
+
+        }
+
+    });
+
+
+
+</script>

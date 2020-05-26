@@ -20,6 +20,64 @@
       "password": "$2a$10$D3TWK8MSAh63Lhk4gIFSJ.ekM368J88qJRUYSbuBfzffex6B0dFwK"
     }
   },
+
+
+  "categorys": {
+    "_model": "Category",
+    "HERITAGE SITE": {
+      "Name": "HERITAGE SITE"
+
+    },
+    "CLIFF": {
+      "Name": "CLIFF"
+
+    },
+    "ROUTE": {
+      "Name": "ROUTE"
+
+    },
+    "PARK": {
+      "Name": "PARK"
+
+    },
+    "HISTORICAL SITE": {
+      "Name": "ROUTE"
+
+    },
+    "GARDENS": {
+      "Name": "GARDENS"
+
+    },
+    "CASTLE": {
+      "Name": "CASTLE"
+
+    },
+    "ISLANDS": {
+      "Name": "ISLANDS"
+
+    },
+    "NATIONAL PARK": {
+      "Name": "NATIONAL PARK"
+
+    },
+    "BAY": {
+      "Name": "BAY"
+
+    },
+    "COLLEGE": {
+      "Name": "COLLEGE"
+
+    },
+    "MOUNTAIN": {
+      "Name": "MOUNTAIN"
+
+    },
+    "TOURIST ATTRACTION": {
+      "Name": "TOURIST ATTRACTION"
+
+    }
+  },
+
   "admins": {
     "_model": "Admin",
     "marge": {
@@ -34,151 +92,183 @@
     "one": {
       "name": "Blarney Stone",
       "description": "Even people with a cynical streak lay it down and have a grand time kissing the Blarney Stone.  It’s said to give a person the gift of gab.  The origin of the stone is shrouded in myth, but some say it was brought back from the Holy Land.  Wherever it came from, giving it a smooch is an irresistible act of Irish kitsch.",
-      "category": "Heritage Site",
+      "category": "HERITAGE SITE",
       "latitude": " 51.929092",
       "longitude": "-8.570885",
+      "comment": "This is an iconic spot!",
+      "star": "4",
       "imageURL": "http://res.cloudinary.com/dzpmc2rgn/image/upload/v1583596097/ki3llbkqnuhxy86gcqhe.jpg",
       "user": "->users.homer"
     },
     "two": {
       "name": "The Cliffs of Moher",
       "description": "Words seem like mere shadows compared to the awesome power of nature.  There may be no other place on earth where you’ll experience that raw, muscular power without climbing the Himalaya’s or pointing yourself to the Antarctic.  Easy to get to, the cliffs are in County Clare.  They’re a blaze of cold, fog, and mystic energy.  When here, we advise you tread with caution. There are no barriers and the wind often rises with a fury.  Feel it!",
-      "category": "Cliff",
+      "category": "CLIFF",
       "latitude": "52.970490",
       "longitude": "-9.419951",
+      "comment": "Breathtaking views",
+      "star": "5",
       "imageURL": "http://res.cloudinary.com/dzpmc2rgn/image/upload/v1583596027/cgpg2bvae4d44oalldla.jpg",
       "user": "->users.homer"
     },
     "three": {
       "name": "The Ring of Kerry",
       "description": "The Ring is one of Ireland’s best-loved scenic routes.  At 110 miles long, it circles the awesome Iveragh Peninsula.  You’ll feel as if you’ve tumbled into nature’s mystic arena, and in many ways you have.  The road winds through soft mountains, around bogs, rivers, lakes, and pristine beaches. There are diminutive passes and sweet valleys along the fabled shores of Dingle and Kenmare Bays.  Get out and talk to people in the villages along the way—this is part of an Authentic experience. The Ring attracted Ireland’s first settlers, and ancient ruins abound.  Explore to your heart’s delight.",
-      "category": "Route",
+      "category": "ROUTE",
       "latitude": "51.9427",
       "longitude": "-9.9172",
+      "comment": "A scenic drive that is unforgettable",
+      "star": "4",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585779698/dylunp570qrbjhtbyxwn.jpg",
       "user": "->users.homer"
     },
     "four": {
       "name": "The Giants Causeway",
       "description": "This UNESCO Heritage site is in Northern Ireland, County Antrim.  According to legend, the Irish giant, Fionn McCool, built the causeway to walk to Scotland to do battle with an infamous Scots rival.  This rival, and there are many variations as to what caused his terror, was so frightened by Fionn that he ripped up the pathway so he couldn’t return.  We like to think that, perhaps, Fionn built the pathway to greet a true love in Scotland.  See the Giant’s Causeway and make up your own story.  This is the place where the scenery is stunning and the storytelling is . . . fit for a giant!",
-      "category": "Rock",
+      "category": "HERITAGE SITE",
       "latitude": "55.240833",
       "longitude": "-6.511667",
+      "comment": "Worth the hype!",
+      "star": "4",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1583596158/fz8husovjf9unloynam1.jpg",
       "user": "->users.bart"
     },
     "five": {
       "name": "Newgrange",
       "description": "Newgrange, in County Meath, crouches on a rise just north of the River Boyne. It is the focal point for a ceremonial area and megalithic cemetery that’s 5,000 years old.  (The tomb’s passage is perfectly aligned to mark the Winter Solstice.) According to reliable dating techniques, Newgrange was constructed around 3,200BC.  This means it’s at least 600 years older than the Giza Pyramids in Egypt, and 1,000 years older than Stonehenge",
-      "category": "Heritage Site",
+      "category": "HERITAGE SITE",
       "latitude": "53.704849",
       "longitude": "-6.47468",
+      "comment": "Beautiful place",
+      "star": "4",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585779812/ege7yom92ioqbccsq0yi.jpg",
       "user": "->users.bart"
     },
     "six": {
       "name": "Killarney National Park and Gardens",
       "description": "If visiting the Kerry region, 19th-century Muckross House and Gardens, set in spectacular Killarney National Park, should be top of the must-see list. Standing close to the shores of Muckross Lake, one of Killarney's three lakes that are famed worldwide for their splendor and beauty, this former mansion oozes the grandeur and gentility of bygone days.",
-      "category": "Park",
+      "category": "PARK",
       "latitude": "52.0058447",
       "longitude": "-9.5561803",
+      "comment": "A fantastic day out for all the family",
+      "star": "3",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585784175/aazlqbzruodzkurdjlic.jpg",
       "user": "->users.bart"
     },
     "seven": {
       "name": "Kilmainham Gaol",
       "description": "Featured in many a rebel song and occupying a notoriously dark place in Irish history, Kilmainham Gaol should be high on the list for those with any interest in Ireland's troubled past. It was here that the leaders of the 1916 Uprising were brought and, after being convicted of High Treason, executed in the prison yard. The only one spared was future Irish President Eamon De Valera who, by virtue of his American citizenship, didn't suffer the same grisly fate.",
-      "category": "Historical Site",
+      "category": "HISTORICAL SITE",
       "latitude": "53.338498646",
       "longitude": "-6.30583211",
+      "comment": "Very interesting and educational",
+      "star": "4",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585784198/lpja33deiyylzxkmok1j.jpg",
       "user": "->users.bart"
     },
     "eight": {
       "name": "Glendalough",
       "description": "Magical and mysterious, Glendalough is home to one of the most important monastic sites in Ireland. The settlement was established by St. Kevin during the 6th century and eventually evolved into what's known as the Monastic City. Visitors have flocked to the valley of the two lakes for thousands of years to absorb its rich history, magnificent scenery, plentiful wildlife, and fascinating archaeological finds.",
-      "category": "Historical Site",
+      "category": "HISTORICAL SITE",
       "latitude": "53.011299",
       "longitude": "-6.326156",
+      "comment": "Wonderful site that has to be seen",
+      "star": "5",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585784238/zlqshdcojtlthpy5gwkf.jpg",
       "user": "->users.bart"
     },
     "nine": {
       "name": "Powerscourt House and Gardens",
       "description": "Superb views, serene lakeside walks, engaging history, and the stunning backdrop of Sugarloaf Mountain are just some of the treats in store when visiting this magnificent home, just 20 kilometers from Dublin. Now owned by the Slazenger family, the house is set on 47 manicured acres. Take time to stroll through the Rose and Kitchen Gardens and explore the beautiful Italian Gardens. There are more than 200 varieties of trees, shrubs, and flowers, and particularly moving is a section where much-loved family pets were buried complete with headstones and inscriptions.",
-      "category": "Gardens",
+      "category": "GARDENS",
       "latitude": "53.1842",
       "longitude": "-6.1855",
+      "comment": "Great views and wonderful surroundings",
+      "star": "3",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585780053/hhqkumzpcv3smm4olyuz.jpg",
       "user": "->users.bart"
     },
     "ten": {
       "name": "Bunratty Castle and Folk Park",
       "description": "A visit to the Shannon region wouldn't be complete without coming here. Dating from 1425, the castle is the best-preserved medieval fortress in Ireland and was lovingly restored in the 1950s. Containing a fine array of 15th- and 16th-century furnishings and tapestries, the castle will transport you back to ancient medieval times. The themed banquets in the evenings are great fun, although certain guests who misbehave run the risk of being sent to the dungeons below.",
-      "category": "Castle",
+      "category": "CASTLE",
       "latitude": "52.5187",
       "longitude": "-7.8873",
+      "comment": "Superb day out for all the family",
+      "star": "4",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585310298/ax3ydaebtzyzdrih4qtc.jpg",
       "user": "->users.bart"
     },
     "eleven": {
       "name": "The Aran Islands",
       "description": "Originally brought to world attention in 1934 by the fictionalised documentary Man of Aran, these islands have been entrancing visitors ever since. This is a taste of Ireland as it once was. Gaelic is the first language, there are a mere 12,000 inhabitants, and once ashore, you'll feel as if you're in a time warp. There are three islands, the largest being Inishmore, then Inishmaan, and the smallest is Inisheer.",
-      "category": "Island",
+      "category": "ISLANDS",
       "latitude": "53.1167",
       "longitude": "-9.7000",
+      "comment": "Survive the boat trip and enjoy the serenity",
+      "star": "3",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585784309/cq6cm1nifqbdebpdmisa.jpg",
       "user": "->users.homer"
     },
     "twelve": {
       "name": "The Burren",
       "description": "The smallest of Ireland’s six national parks, The Burren National Park comprises a small section of the glacio-karst landscape that covers much of north County Clare. Formed around 350 million years ago, this spectacular area – known as The Burren, taken from the Irish boireann, meaning ‘great rock’ – has international significance both geologically and from a biodiversity standpoint, as it allows an unusually large amount of varying wildlife and plant species to flourish.",
-      "category": "Rock",
+      "category": "NATIONAL PARK",
       "latitude": "53.0500",
       "longitude": "-9.1000",
+      "comment": "One for the bucket list!",
+      "star": "4",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585784341/f7cbx6tflsft4yzat1xu.jpg",
       "user": "->users.homer"
     },
     "thirteen": {
       "name": "Dingle Bay",
       "description": "One of mainland Ireland’s most westerly points, Dingle Bay separates the two incredibly picturesque headlands of Kerry’s Iveragh and Dingle Peninsulas. As well as driving the world famous routes around the headlands – the Ring of Kerry and Slea Head Drive – visitors here should definitely take a boat trip to meet Fungie.",
-      "category": "Bay",
+      "category": "BAY",
       "latitude": "52.0667",
       "longitude": "-10.1833",
+      "comment": "There is simply no place like the Kingdom",
+      "star": "4",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585784358/nbkwavezgzwvnncbyhgw.jpg",
       "user": "->users.homer"
     },
     "fourteen": {
       "name": "Skellig Michael",
       "description": "Just off the Iveragh Peninsula, craggy Skellig Michael island is a UNESCO World Heritage Site and the site of a former monastery, in use up until the 12th century. More recently, it’s become a filming location for the newest Star Wars movies.",
-      "category": "Rock",
+      "category": "HERITAGE SITE",
       "latitude": "51.7667",
       "longitude": "-10.5333",
+      "comment": "A must for all Star Wars fans!",
+      "star": "5",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585784373/uaw36vieva5z8d06ym4l.jpg",
       "user": "->users.homer"
     },
     "fifteen": {
       "name": "Trinity College",
       "description": "Founded in 1592, Trinity College Dublin is the university that educated Ireland’s first president, the so-called ‘father of Irish republicans’ Theobald Wolfe Tone, world-class writers like Jonathan Swift, Oscar Wilde and Samuel Beckett, and many other great Irish minds. The college’s Old Library is home to The Book of Kells – a 9th-century illuminated manuscript often referred to as Ireland’s national treasure.",
-      "category": "College",
+      "category": "COLLEGE",
       "latitude": "53.343792",
       "longitude": "-6.254572",
+      "comment": "Site seeing at it's very best",
+      "star": "3",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585780221/vusueu4nwz6labpk0m4i.jpg",
       "user": "->users.homer"
     },
     "sixteen": {
       "name": "Ben Bulben",
       "description": "Formed during the ice age, Ben Bulben is the jewel in the crown of the Dartry Mountains. As well as offering panoramic views of Sligo Bay beneath, this peak is strongly tied to Irish mythology and literature, particularly through the work of the poet W. B. Yeats, who is buried in the graveyard below it.",
-      "category": "Mountain",
+      "category": "MOUNTAIN",
       "latitude": "54.3666652",
       "longitude": "-8.4666648",
+      "comment": "Fantastic panoramic views",
+      "star": "4",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585780235/wnuscwwd4hfzluwdptwf.jpg",
       "user": "->users.homer"
     },
     "seventeen": {
       "name": "The Waterford Viking Triangle",
       "description": "The highlight of the Waterford Viking Triangle – an award-winning cultural and heritage area in Ireland’s oldest city – is Reginald’s Tower, the country’s oldest urban civic building, now a museum. Another Waterford County highlight to visit while in the area is Dunmore East, a beautiful fishing village founded before the time of the Vikings, during the Iron Age.",
-      "category": "Heritage area",
+      "category": "HERITAGE SITE",
       "latitude": "52.255556",
       "longitude": "-7.116667",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585780263/ymenjgfykl7oelb8w4xh.jpg",
@@ -187,7 +277,7 @@
     "eighteen": {
       "name": "The Guinness Storehouse",
       "description": "Ireland’s most visited fee-charging tourist attraction, The Guinness Storehouse® is a museum and tourist experience dedicated to Ireland’s best-known beverage, housed inside a former fermentation plant at the St. James’s Gate Brewery in Dublin.",
-      "category": "Tourist Attraction",
+      "category": "TOURIST ATTRACTION",
       "latitude": "53.3383",
       "longitude": "-6.2855",
       "imageURL": "https://res.cloudinary.com/dzpmc2rgn/image/upload/v1585780282/q0acfdaq7ezrng3f8ixa.jpg",

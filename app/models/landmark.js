@@ -6,6 +6,7 @@ const Schema = Mongoose.Schema;
 
 
 
+
 const landmarkSchema = new Schema({
     name: String,
     description: String,
@@ -14,6 +15,8 @@ const landmarkSchema = new Schema({
     imageURL: String,
     latitude: String,
     longitude: String,
+    comment: String,
+    star: String,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -24,6 +27,10 @@ const landmarkSchema = new Schema({
 
 landmarkSchema.statics.findById = function(id) {
     return this.findOne({ _id : id});
+
+    landmarkSchema.statics.findLandMarksInCategory = function(category) {
+        return this.find({ category: category}).populate('category').lean();
+    };
 
 
 };
