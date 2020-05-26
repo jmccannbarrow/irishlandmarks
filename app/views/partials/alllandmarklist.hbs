@@ -58,11 +58,8 @@
                     <tr>
                         <th>Name</th>
                         <th>Details</th>
-                        <th>Delete</th>
-                        <th>Update</th>
-                        <th>Comments</th>
-                        <th>Rating</th>
-
+                        <th>Creator</th>
+                        <th>Add Comments & Rating</th>
 
                     </tr>
                     </thead>
@@ -77,19 +74,11 @@
 
                             <td><div class="ui item"><a href="/landmark/viewLandmarkDetails/{{_id}}" class="ui icon button"><i class="file alternate outline icon"></i>
                             </a>
-                            </td>
 
-
-
-                            <td><div class="ui item"><a href="/landmark/deleteLandmark/{{_id}}" class="ui icon button"><i class="icon trash"></i>
+                            <td> {{user.firstName}} {{user.lastName}} </td>
+                            <td><div class="ui item"><a href="/landmark/showCommentSettings/{{_id}}" class="ui icon button"><i class="edit icon"></i>
                             </a>
                             </td>
-                            <td><div class="ui item"><a href="/landmark/showLandmarkSettings/{{_id}}" class="ui icon button"><i class="edit icon"></i>
-                            </a>
-                            </td>
-                            <td> {{comment}} </td>
-                            <td> {{star}} </td>
-
                         </tr>
                     {{/each}}
                     </tbody>
