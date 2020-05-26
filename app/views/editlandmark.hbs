@@ -19,8 +19,23 @@
                             <div class="field">
                                 <label>Categorys</label>
 
-                                <input value="{{landmark.category}}" type="text" name="category">
-                                <div></div>
+
+
+                                <div>
+                                    <select name="ddlcategory" id="ddlcategory">
+
+                                        {{#each categorys}}
+
+                                            <option value="{{Name}}">{{Name}} </option>
+
+                                        {{/each}}
+                                    </select>
+                                </div>
+
+                                <input type="hidden" name="category" id="category" value="{{landmark.category}}" required >
+
+
+
                                 <div></div>
                                 <div class="field">
                                     <label>Latitude</label>
@@ -43,7 +58,7 @@
                                             <div></div>
                                             <div class="field">
                                                 <label>Image:</label>
-                                                <input type="file" class="form-control" name="imagefile" accept="image/png, image/jpeg">
+                                                <input type="file" class="form-control" name="imagefile" accept="image/png, image/jpeg" required>
                                                 <input type="submit" value="Upload" class="uk-button uk-button-default">
 
                 </form>
@@ -51,4 +66,68 @@
 
         </div>
 </section>
+
+<script type="text/javascript">
+
+    $('select').on(
+            { "focus": function() {
+
+                    this.selectedIndex = -1;
+                }
+                , "change": function() {
+                    choice = $(this).val();
+
+
+                    this.blur();
+
+
+                    if (choice == "0") {
+
+                        setTimeout(function() { alert('Please Choose A Categorys');}, 0);
+                        return;
+                    }
+                    else {
+
+                        $("#category").val(choice);
+                    }
+
+                }
+            })
+
+
+    $('form').submit(function () {
+
+
+        var category = $.trim($('#category').val());
+
+
+
+        // Check if empty of not
+
+        if (category  === '') {
+
+            alert('Please select a category');
+
+            return false;
+
+        }
+
+
+
+    });
+
+
+    $(document).ready(function() {
+
+        console.log('Hello');
+        var category = $.trim($('#category').val());
+        console.log(category);
+
+        $('#ddlcategory').val(category);
+
+    });
+
+</script>
+
+
 

@@ -1,0 +1,43 @@
+{{> mainmenu _id="editlandmark"}}
+<section class="ui raised segment">
+    <div class="ui grid ">
+        <div class="ui ten wide column">
+            <div class="ui stacked fluid form segment">
+                <form action="/editlandmarkcomment/{{landmark._id}}" method="POST" enctype="multipart/form-data" >
+                    <h3 class="ui header">Give your comments & rate the {{landmark.name}}!</h3>
+
+                    <div class="field">
+
+                        <label>Name</label>
+                        <input value="{{landmark.name}}" type="text" name="name">
+                        <div class="field">
+                            <label>Image</label>
+                            <img src="{{landmark.imageURL}}" alt="No Image" width="542" height="262">
+
+
+                            <div></div>
+                            <div></div>
+                            <div class="field">
+
+
+                                <label>Comment</label>
+
+                                <input value="{{landmark.comment}}" type="text" name="comment">
+                                <div></div>
+                                <div class="field">
+                                    <label>Star Rating</label>
+
+                                    <input value="{{landmark.star}}" type="text" name="star">
+                                    <div></div>
+                                    <div></div>
+
+                                    <div></div>
+                                    <input type="submit" value="Upload" class="uk-button uk-button-default">
+                                    <div></div>
+
+                </form>
+            </div>
+
+        </div>
+</section>
+
