@@ -38,7 +38,10 @@ module.exports = [
 
 
     { method: 'GET', path: '/createlandmark', config: Landmarks.showCreateLandmark },
-    { method: 'POST', path: '/createlandmark', config: Landmarks.createlandmark },
+
+
+    { method: 'POST', path: '/managelandmarks', config: Landmarks.createlandmark },
+
 
 
     { method: 'GET', path: '/categoryreport',  config: Categorys.categoryreport },
@@ -48,15 +51,23 @@ module.exports = [
 
     { method: 'GET', path: '/createcategory', config: Categorys.showCreateCategory },
     { method: 'POST', path: '/createcategory', config: Categorys.createcategory },
+    { method: 'GET', path: '/category/viewCategoryDetails/{id}', config: Categorys.viewCategoryDetails },
+    { method: 'GET', path: '/category/showCategorySettings/{id}', config: Categorys.showCategorySettings },
+    { method: 'POST', path: '/editcategory/{id}', config: Categorys.updateCategory },
+    { method: 'GET', path: '/category/deleteCategory/{id}', config: Categorys.deleteCategory },
 
     { method: 'GET', path: '/managelandmarks',  config: Landmarks.managelandmarks },
 
+
+    { method: 'GET', path: '/managelandmarksbycategory',  config: Landmarks.managelandmarksbycategory },
 
     { method: 'GET', path: '/manageusers',  config: Accounts.manageusers },
 
     { method: 'GET', path: '/landmark/viewLandmarkDetails/{id}', config: Landmarks.viewLandmarkDetails },
     { method: 'GET', path: '/landmark/showLandmarkSettings/{id}', config: Landmarks.showLandmarkSettings },
     { method: 'POST', path: '/editlandmark/{id}', config: Landmarks.updateLandmark },
+    { method: 'GET', path: '/landmark/showCommentSettings/{id}', config: Landmarks.showCommentSettings },
+    { method: 'POST', path: '/editlandmarkcomment/{id}', config: Landmarks.addcomment },
     { method: 'GET', path: '/landmark/deleteLandmark/{id}', config: Landmarks.deleteLandmark },
 
 

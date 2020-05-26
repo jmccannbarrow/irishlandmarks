@@ -2,10 +2,14 @@
 
 const axios = require('axios');
 
+
 class PoiService {
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
     }
+
+
+
 
 
     async getAdmins() {
@@ -146,15 +150,64 @@ class PoiService {
             return null;
         }
     }
-
-    async authenticate(user) {
+    async getCategorys() {
         try {
-            const response = await axios.post('/api/users/authenticate', user);
+            const response = await axios.get(this.baseUrl + '/api/categorys');
             return response.data;
         } catch (e) {
             return null;
         }
     }
+
+    async getCategory(id) {
+        try {
+            const response = await axios.get(this.baseUrl + '/api/categorys/' + id);
+            return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async createCategory(newCategory) {
+        try {
+            const response = await axios.post(this.baseUrl + '/api/categorys', newCategory);
+            return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async deleteAllCategorys() {
+        try {
+            const response = await axios.delete(this.baseUrl + '/api/categorys');
+            return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async deleteOneCategory(id) {
+        try {
+            const response = await axios.delete(this.baseUrl + '/api/categorys/' + id);
+            return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+
+    async authenticate(user) {
+        try {
+            const response = await axios.post(this.baseUrl + '/api/users/authenticate', user);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data.token;
+            return response.data;
+        } catch (e) {
+            return null;
+        }
+    }
+    async clearAuth(user) {
+        axios.defaults.headers.common['Authorization'] = '';
+    }
+
 
 }
 

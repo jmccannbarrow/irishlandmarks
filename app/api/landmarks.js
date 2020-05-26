@@ -47,6 +47,8 @@ const Landmarks = {
         }
     },
 
+
+
     deleteOne: {
         auth: false,
         handler: async function(request, h) {

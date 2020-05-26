@@ -4,6 +4,7 @@ const Landmark = require('../models/landmark');
 const User = require('../models/user');
 const Joi = require('@hapi/joi');
 const ImageStore = require('../utils/image-store');
+const Category = require('../models/category');
 
 
 
@@ -19,11 +20,16 @@ const Landmarks = {
             try{
                 const id = request.auth.credentials.id;
                 const landmarks = await Landmark.find({user:id}).populate('user').lean();
+                const categorys = await Category.find().lean();
+                const users = await User.find().lean();
                 //const landmarks = await Landmark.find({userid: id}).lean();
                 //const landmarks = await Landmark.findById().populate('user').lean();
                 return h.view('report', {
                     title: 'Landmarks to Date',
-                    landmarks:landmarks
+                    landmarks:landmarks,
+                    categorys:categorys,
+                    users:users,
+
                 });
             } catch (err) {
                 return h.view('main', { errors: [{ message: err.message }] });
@@ -38,21 +44,24 @@ const Landmarks = {
 
                 if (Object.keys(file).length > 0) {
                     const url = await ImageStore.uploadImage(request.payload.imagefile);
-
+                    //const category = await Category.findById(categoryid).lean();
                     const id = request.auth.credentials.id;
                     const user = await User.findById(id);
                     const data = request.payload;
 
 
+
                     const newLandmark = new Landmark({
                         name: data.name,
                         description: data.description,
+                        //category: request.payload.category,
                         category: data.category,
                         latitude: data.latitude,
                         longitude: data.longitude,
                         userid: id,
                         imageURL: url,
                         user: user._id
+
                     });
 
                     await newLandmark.save();
@@ -77,9 +86,14 @@ const Landmarks = {
 
     showCreateLandmark: {
         auth: false,
-        handler: function(request, h) {
-            return h.view('createlandmark', { title: 'Sign up for Famous Irish Landmarks' });
+        handler: async function(request, h) {
+
+            const categorys = await Category.find().lean();
+
+            return h.view('createlandmark', { title: 'Sign up for Famous Irish Landmarks',  categorys: categorys });
         }
+
+
     },
 
     createlandmark: {
@@ -95,6 +109,12 @@ const Landmarks = {
                     const user = await User.findById(id);
                     const data = request.payload;
 
+                    const categoryname = request.params.Name;
+                    const category = await Category.findByName(categoryname)
+
+
+
+                    //const category = Category.findByName(Name).lean();
 
                     const newLandmark = new Landmark({
                         name: data.name,
@@ -109,6 +129,7 @@ const Landmarks = {
 
                     await newLandmark.save();
                     return h.redirect('/report');
+
 
                 }
 
@@ -138,11 +159,12 @@ const Landmarks = {
                 const landmarkid = request.params.id;
 
                 const landmark = await Landmark.findById(landmarkid).lean();
+                const categorys = await Category.find().lean();
 
                 console.log(landmark._id);
 
 
-                return h.view('editlandmark', {title: 'Edit Landmark', landmark: landmark});
+                return h.view('editlandmark', {title: 'Edit Landmark', landmark: landmark, categorys: categorys});
             } catch (err) {
                 return h.view('/', {errors: [{message: err.message}]});
             }
@@ -185,6 +207,7 @@ const Landmarks = {
                     landmark.category = landmarkedit.category;
                     landmark.latitude = landmarkedit.latitude;
                     landmark.longitude = landmarkedit.longitude;
+                    landmark.comment = landmarkedit.comment
 
                     await landmark.save();
                     return h.redirect('/report');
@@ -218,10 +241,14 @@ const Landmarks = {
 
     managelandmarks: {
         handler: async function(request, h) {
-            const landmarks = await Landmark.find().populate('contributor').lean();
+            const id = request.auth.credentials.id;
+
+            const landmarks = await Landmark.find().populate('user').lean();
+            const categorys = await Category.find().lean();
             return h.view('managelandmarks', {
                 title: 'All Landmarks',
-                landmarks:landmarks
+                landmarks:landmarks,
+                categorys:categorys
             });
         }
     },
@@ -242,6 +269,87 @@ const Landmarks = {
             }
         }
 
+    },
+
+
+
+
+    addcomment: {
+
+        handler: async function(request, h) {
+            try {
+
+                const landmarkedit = request.payload;
+                const landmarkid = request.params.id;
+
+
+
+
+
+                const landmark = await Landmark.findById(landmarkid);
+
+                landmark.comment = landmarkedit.comment,
+                    landmark.star = landmarkedit.star
+
+                await landmark.save();
+                return h.redirect('/managelandmarks');
+
+
+
+
+            } catch (err) {
+                return h.view('main', { errors: [{ message: err.message }] });
+            }
+
+        },
+        payload: {
+            multipart: true,
+            output: 'data',
+            maxBytes: 209715200,
+            parse: true
+        }
+
+    },
+
+
+    managelandmarksbycategory: {
+        handler: async function(request, h) {
+
+            const categoryid = request.params.id;
+            console.log(categoryid);
+            const category = await Category.findById(categoryid);
+            const categoryname = category.Name;
+            console.log(categoryname);
+//Need method to search landmarks by category
+            const landmarks = await Landmark.find({category:categoryname}).lean();
+            //const landmarks = await Landmark.find().populate('contributor').lean();
+            return h.view('managelandmarks', {
+                title: 'All Landmarks',
+                landmarks:landmarks,
+                categorys:categorys
+            });
+        }
+    },
+
+    showCommentSettings: {
+
+
+        handler: async function(request, h) {
+            try {
+
+                const landmarkid = request.params.id;
+
+                const landmark = await Landmark.findById(landmarkid).lean();
+                const categorys = await Category.find().lean();
+
+                console.log(landmark._id);
+
+
+                return h.view('editlandmarkcomment', {title: 'Edit Landmark', landmark: landmark, categorys: categorys});
+            } catch (err) {
+                return h.view('/', {errors: [{message: err.message}]});
+            }
+        }
     },
 
 };
