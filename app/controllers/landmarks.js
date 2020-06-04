@@ -22,8 +22,7 @@ const Landmarks = {
                 const landmarks = await Landmark.find({user:id}).populate('user').lean();
                 const categorys = await Category.find().lean();
                 const users = await User.find().lean();
-                //const landmarks = await Landmark.find({userid: id}).lean();
-                //const landmarks = await Landmark.findById().populate('user').lean();
+
                 return h.view('report', {
                     title: 'Landmarks to Date',
                     landmarks:landmarks,
@@ -44,7 +43,7 @@ const Landmarks = {
 
                 if (Object.keys(file).length > 0) {
                     const url = await ImageStore.uploadImage(request.payload.imagefile);
-                    //const category = await Category.findById(categoryid).lean();
+
                     const id = request.auth.credentials.id;
                     const user = await User.findById(id);
                     const data = request.payload;
@@ -54,7 +53,6 @@ const Landmarks = {
                     const newLandmark = new Landmark({
                         name: data.name,
                         description: data.description,
-                        //category: request.payload.category,
                         category: data.category,
                         latitude: data.latitude,
                         longitude: data.longitude,
@@ -112,9 +110,6 @@ const Landmarks = {
                     const categoryname = request.params.Name;
                     const category = await Category.findByName(categoryname)
 
-
-
-                    //const category = Category.findByName(Name).lean();
 
                     const newLandmark = new Landmark({
                         name: data.name,
@@ -231,7 +226,7 @@ const Landmarks = {
 
     poilist: {
         handler: async function(request, h) {
-            //const landmarks = await Landmark.find().populate('contributor').lean();
+
             return h.view('/poireport', {
                 title: 'Landmarks to Date',
 
@@ -312,23 +307,41 @@ const Landmarks = {
     },
 
 
-    managelandmarksbycategory: {
+    findLandmarksBycategory: {
         handler: async function(request, h) {
+            try
+            {
+                const id = request.auth.credentials.id;
+                const categoryname = request.payload.category;
+                console.log(categoryname);
+                //const landmarks = await Landmark.find({ $or: [{userid:id}, {category:categoryname}]});
 
-            const categoryid = request.params.id;
-            console.log(categoryid);
-            const category = await Category.findById(categoryid);
-            const categoryname = category.Name;
-            console.log(categoryname);
-//Need method to search landmarks by category
-            const landmarks = await Landmark.find({category:categoryname}).lean();
-            //const landmarks = await Landmark.find().populate('contributor').lean();
-            return h.view('managelandmarks', {
-                title: 'All Landmarks',
-                landmarks:landmarks,
-                categorys:categorys
-            });
-        }
+                //const landmarks = await Landmark.find({user:id}).populate('user').lean(); //this works
+                const landmarks = await Landmark.find({user:id,category:categoryname}).populate('user').lean(); //This doesn't
+                console.log(landmarks);
+
+                const categorys = await Category.find().lean();
+
+
+                const users = await User.find().lean();
+                console.log("after const users");
+
+                return h.view('report', {
+                    title: 'Landmarks to Date',
+                    landmarks:landmarks,
+                    categorys:categorys,
+                    users:users,
+
+                });
+
+            }
+            catch (err) {
+                return h.view('main', { errors: [{ message: err.message }] });
+            }
+
+        },
+
+
     },
 
     showCommentSettings: {
