@@ -10,8 +10,7 @@ const Categorys = {
             try{
 
                 const categorys = await Category.find().lean();
-                //const landmarks = await Landmark.find({userid: id}).lean();
-                //const landmarks = await Landmark.findById().populate('user').lean();
+
                 return h.view('categoryreport', {
                     title: 'Categorys',
                     categorys:categorys
@@ -44,7 +43,7 @@ const Categorys = {
 
                 });
                 category = await newCategory.save();
-                //request.cookieAuth.set({ id: category.id });
+
                 return h.redirect('/categoryreport');
 
 
@@ -130,7 +129,7 @@ const Categorys = {
 
                 const category = await Category.findById(categoryid).lean();
 
-                console.log(category._id);
+
 
 
                 return h.view('editcategory', {title: 'Edit Category', category: category});
@@ -168,8 +167,7 @@ const Categorys = {
                 const categoryedit = request.payload;
                 const categoryid = request.params.id;
 
-                console.log(categoryid);
-                console.log(categoryedit);
+
 
 
                 const category  = await Category.findById(categoryid)
@@ -200,10 +198,10 @@ const Categorys = {
             try {
 
                 const categoryid = request.params.id;
-                console.log(categoryid);
+
                 const category = await Category.findById(categoryid);
                 const categoryname = category.Name;
-                console.log(categoryname);
+
 //Need method to search landmarks by category
                 const landmarks = await Landmark.find({category:categoryname}).lean();
 

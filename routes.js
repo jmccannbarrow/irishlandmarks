@@ -59,7 +59,7 @@ module.exports = [
     { method: 'GET', path: '/managelandmarks',  config: Landmarks.managelandmarks },
 
 
-    { method: 'GET', path: '/managelandmarksbycategory',  config: Landmarks.managelandmarksbycategory },
+    { method: 'POST', path: '/findLandmarksBycategory',  config: Landmarks.findLandmarksBycategory },
 
     { method: 'GET', path: '/manageusers',  config: Accounts.manageusers },
 
