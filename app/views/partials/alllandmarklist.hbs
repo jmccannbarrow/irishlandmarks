@@ -1,5 +1,5 @@
 <section class="ui raised segment">
-    <h3 class="ui header">My Famous Irish Landmarks </h3>
+    <h3 class="ui header">All Famous Irish Landmarks </h3>
     <div class="ui grid">
 
 
@@ -9,39 +9,7 @@
 
 
         <div class="ui sixteen wide column">
-            <div class="ui stacked fluid form segment">
-                <form action="/editlandmark/{{landmark._id}}" method="POST" enctype="multipart/form-data" >
-                    <h3 class="ui header">View by Categorys</h3>
 
-
-
-
-                    <div class="six wide field">
-                        <label>Categorys</label>
-
-
-
-                        <div>
-                            <select id="category">
-                                <option value="0">Please select a Categorys</option>
-                                {{#each categorys}}
-
-                                    <option value="{{Name}}">{{Name}} </option>
-
-                                {{/each}}
-                            </select>
-                        </div>
-
-                        <input type="hidden" name="category" id="category" value="" required >
-
-
-
-                        <div></div>
-
-
-                    </div>
-
-            </div>
 
 
 
@@ -105,7 +73,7 @@
 
                     if (choice == "0") {
 
-                        setTimeout(function() { alert('Please Choose A Categorys');}, 0);
+                        setTimeout(function() { alert('Please Choose A Category');}, 0);
                         return;
                     }
                     else {
