@@ -1,75 +1,38 @@
 'use strict';
 
-const Landmark = require('../models/landmark');
-const User = require('../models/user');
-const Joi = require('@hapi/joi');
 const ImageStore = require('../utils/image-store');
-const Category = require('../models/category');
 
-
-
-
-const Landmarks = {
-    home: {
-        handler: function(request, h) {
-            return h.view('home', { title: 'Famous Irish Landmarks' });
-        }
-    },
-    report: {
+const Gallery = {
+    index: {
         handler: async function(request, h) {
-            try{
-                const id = request.auth.credentials.id;
-                const landmarks = await Landmark.find({user:id}).populate('user').lean();
-                const categorys = await Category.find().lean();
-                const users = await User.find().lean();
-                //const landmarks = await Landmark.find({userid: id}).lean();
-                //const landmarks = await Landmark.findById().populate('user').lean();
-                return h.view('report', {
-                    title: 'Landmarks to Date',
-                    landmarks:landmarks,
-                    categorys:categorys,
-                    users:users,
-
+            try {
+                const allImages = await ImageStore.getAllImages();
+                return h.view('gallery', {
+                    title: 'Cloudinary Gallery',
+                    images: allImages
                 });
             } catch (err) {
-                return h.view('main', { errors: [{ message: err.message }] });
+                console.log(err);
             }
         }
     },
-    landmark: {
-        handler: async function(request, h) {
 
+    uploadFile: {
+        handler: async function(request, h) {
             try {
                 const file = request.payload.imagefile;
+                const filename = request.payload.name;
 
                 if (Object.keys(file).length > 0) {
-                    const url = await ImageStore.uploadImage(request.payload.imagefile);
-                    //const category = await Category.findById(categoryid).lean();
-                    const id = request.auth.credentials.id;
-                    const user = await User.findById(id);
-                    const data = request.payload;
+                    await ImageStore.uploadImage(request.payload.imagefile, filename);
 
 
-
-                    const newLandmark = new Landmark({
-                        name: data.name,
-                        description: data.description,
-                        //category: request.payload.category,
-                        category: data.category,
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        userid: id,
-                        imageURL: url,
-                        user: user._id
-
-                    });
-
-                    await newLandmark.save();
-                    return h.redirect('/report');
-
+                    return h.redirect('/');
                 }
-
-
+                return h.view('gallery', {
+                    title: 'Cloudinary Gallery',
+                    error: 'No file selected'
+                });
             } catch (err) {
                 console.log(err);
             }
@@ -80,280 +43,18 @@ const Landmarks = {
             maxBytes: 209715200,
             parse: true
         }
-
     },
 
-
-    showCreateLandmark: {
-        auth: false,
+    deleteImage: {
         handler: async function(request, h) {
-
-            const categorys = await Category.find().lean();
-
-            return h.view('createlandmark', { title: 'Sign up for Famous Irish Landmarks',  categorys: categorys });
-        }
-
-
-    },
-
-    createlandmark: {
-        handler: async function(request, h) {
-
             try {
-                const file = request.payload.imagefile;
-
-                if (Object.keys(file).length > 0) {
-                    const url = await ImageStore.uploadImage(request.payload.imagefile);
-
-                    const id = request.auth.credentials.id;
-                    const user = await User.findById(id);
-                    const data = request.payload;
-
-                    const categoryname = request.params.Name;
-                    const category = await Category.findByName(categoryname)
-
-
-
-                    //const category = Category.findByName(Name).lean();
-
-                    const newLandmark = new Landmark({
-                        name: data.name,
-                        description: data.description,
-                        category: data.category,
-                        latitude: data.latitude,
-                        longitude: data.longitude,
-                        userid: id,
-                        imageURL: url,
-                        user: user._id
-                    });
-
-                    await newLandmark.save();
-                    return h.redirect('/report');
-
-
-                }
-
-
+                await ImageStore.deleteImage(request.params.id);
+                return h.redirect('/');
             } catch (err) {
                 console.log(err);
             }
-        },
-        payload: {
-            multipart: true,
-            output: 'data',
-            maxBytes: 209715200,
-            parse: true
         }
-
-    },
-
-
-
-
-    showLandmarkSettings: {
-
-
-        handler: async function(request, h) {
-            try {
-
-                const landmarkid = request.params.id;
-
-                const landmark = await Landmark.findById(landmarkid).lean();
-                const categorys = await Category.find().lean();
-
-                console.log(landmark._id);
-
-
-                return h.view('editlandmark', {title: 'Edit Landmark', landmark: landmark, categorys: categorys});
-            } catch (err) {
-                return h.view('/', {errors: [{message: err.message}]});
-            }
-        }
-    },
-
-    viewLandmarkDetails: {
-
-
-        handler: async function(request, h) {
-            try {
-
-                const landmarkid = request.params.id;
-                const landmark = await Landmark.findById(landmarkid).lean();
-
-
-                return h.view('viewlandmarkdetails', {title: 'View Landmark Details', landmark: landmark});
-            } catch (err) {
-                return h.view('/', {errors: [{message: err.message}]});
-            }
-        }
-    },
-
-    updateLandmark: {
-        handler: async function(request, h) {
-            try {
-
-                const landmarkedit = request.payload;
-                const landmarkid = request.params.id;
-
-                const file = request.payload.imagefile;
-
-                if (Object.keys(file).length > 0) {
-                    const url = await ImageStore.uploadImage(request.payload.imagefile);
-
-                    const landmark = await Landmark.findById(landmarkid);
-                    landmark.name = landmarkedit.name;
-                    landmark.description = landmarkedit.description;
-                    landmark.imageURL = url;
-                    landmark.category = landmarkedit.category;
-                    landmark.latitude = landmarkedit.latitude;
-                    landmark.longitude = landmarkedit.longitude;
-                    landmark.comment = landmarkedit.comment
-
-                    await landmark.save();
-                    return h.redirect('/report');
-
-                }
-
-
-            } catch (err) {
-                return h.view('main', { errors: [{ message: err.message }] });
-            }
-
-        },
-        payload: {
-            multipart: true,
-            output: 'data',
-            maxBytes: 209715200,
-            parse: true
-        }
-
-    },
-
-    poilist: {
-        handler: async function(request, h) {
-            //const landmarks = await Landmark.find().populate('contributor').lean();
-            return h.view('/poireport', {
-                title: 'Landmarks to Date',
-
-            });
-        }
-    },
-
-    managelandmarks: {
-        handler: async function(request, h) {
-            const id = request.auth.credentials.id;
-
-            const landmarks = await Landmark.find().populate('user').lean();
-            const categorys = await Category.find().lean();
-            return h.view('managelandmarks', {
-                title: 'All Landmarks',
-                landmarks:landmarks,
-                categorys:categorys
-            });
-        }
-    },
-
-
-    deleteLandmark: {
-        handler: async function (request, h) {
-            try {
-
-                const landmarkid = request.params.id
-                const landmark  = await Landmark.findById(landmarkid)
-                const deleteLandmark  = await Landmark.findByIdAndRemove(landmarkid);
-
-
-                return h.redirect('/report');
-            } catch (err) {
-                return h.view('main', { errors: [{ message: err.message }] });
-            }
-        }
-
-    },
-
-
-
-
-    addcomment: {
-
-        handler: async function(request, h) {
-            try {
-
-                const landmarkedit = request.payload;
-                const landmarkid = request.params.id;
-
-
-
-
-
-                const landmark = await Landmark.findById(landmarkid);
-
-                landmark.comment = landmarkedit.comment,
-                    landmark.star = landmarkedit.star
-
-                await landmark.save();
-                return h.redirect('/managelandmarks');
-
-
-
-
-            } catch (err) {
-                return h.view('main', { errors: [{ message: err.message }] });
-            }
-
-        },
-        payload: {
-            multipart: true,
-            output: 'data',
-            maxBytes: 209715200,
-            parse: true
-        }
-
-    },
-
-
-    managelandmarksbycategory: {
-        handler: async function(request, h) {
-
-            const categoryid = request.params.id;
-            console.log(categoryid);
-            const category = await Category.findById(categoryid);
-            const categoryname = category.Name;
-            console.log(categoryname);
-//Need method to search landmarks by category
-            const landmarks = await Landmark.find({category:categoryname}).lean();
-            //const landmarks = await Landmark.find().populate('contributor').lean();
-            return h.view('managelandmarks', {
-                title: 'All Landmarks',
-                landmarks:landmarks,
-                categorys:categorys
-            });
-        }
-    },
-
-    showCommentSettings: {
-
-
-        handler: async function(request, h) {
-            try {
-
-                const landmarkid = request.params.id;
-
-                const landmark = await Landmark.findById(landmarkid).lean();
-                const categorys = await Category.find().lean();
-
-                console.log(landmark._id);
-
-
-                return h.view('editlandmarkcomment', {title: 'Edit Landmark', landmark: landmark, categorys: categorys});
-            } catch (err) {
-                return h.view('/', {errors: [{message: err.message}]});
-            }
-        }
-    },
-
+    }
 };
 
-
-
-module.exports = Landmarks;
+module.exports = Gallery;
