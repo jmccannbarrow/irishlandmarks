@@ -312,19 +312,17 @@ const Landmarks = {
             try
             {
                 const id = request.auth.credentials.id;
-                const categoryname = request.payload.category;
-                console.log(categoryname);
-                //const landmarks = await Landmark.find({ $or: [{userid:id}, {category:categoryname}]});
+                const categoryname = request.payload.category.toUpperCase();
 
-                //const landmarks = await Landmark.find({user:id}).populate('user').lean(); //this works
-                const landmarks = await Landmark.find({user:id,category:categoryname}).populate('user').lean(); //This doesn't
-                console.log(landmarks);
 
+                const landmarks = await Landmark.find({user:id,category:categoryname}).populate('user').lean();
                 const categorys = await Category.find().lean();
 
 
+
+
                 const users = await User.find().lean();
-                console.log("after const users");
+
 
                 return h.view('report', {
                     title: 'Landmarks to Date',
@@ -343,6 +341,9 @@ const Landmarks = {
 
 
     },
+
+
+
 
     showCommentSettings: {
 
