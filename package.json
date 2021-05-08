@@ -21,7 +21,7 @@
     "bcrypt": "^4.0.1",
     "cloudinary": "^1.20.0",
     "dotenv": "^8.2.0",
-    "handlebars": "^4.7.3",
+    "handlebars": "^4.7.7",
     "hapi": "^18.1.0",
     "hapi-auth-cookie": "^10.0.0",
     "hapi-auth-jwt2": "^10.1.0",
